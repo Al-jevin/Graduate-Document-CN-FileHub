@@ -1,4 +1,17 @@
-Here is a clean, structured README/description tailored for your GitHub repository.
+# CN FileHub – Login System (PHP + Supabase)
+
+## Setup
+1. **Supabase → SQL Editor:** run `supabase/schema.sql`.
+2. **Supabase → Authentication → Providers → Email:** enable *Confirm email*; set minimum password length to 8+
+   (and *Leaked password protection* if your plan has it). Add CAPTCHA (Authentication → Attack Protection).
+3. **Authentication → URL Configuration:** set Site URL to `APP_URL` and add `APP_URL/login.php` to Redirect URLs.
+4. `cp .env.example .env` and fill in the URL + keys (Project Settings → API). Never commit `.env`.
+5. Create the admin: Authentication → Users → *Add user* (auto-confirm), then run the commented SQL at the bottom of `schema.sql`.
+6. Run locally (needs PHP 8.1+ with cURL): `php -S localhost:8000 -t public`
+   - Admin portal: http://localhost:8000/login.php
+   - Student portal: http://localhost:8000/login.php?portal=student
+
+In production, point the web root at `public/` only (so `src/` and `.env` are never served), and serve over HTTPS with `APP_ENV=production`.
 
 ---
 
