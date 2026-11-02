@@ -1,0 +1,33 @@
+/* Design tokens. Colors marked "design" come from the Figma file; the rest were chosen to match it. */
+:root {
+  --green:          #1B5F3A; /* design: header + dark text */
+  --gold:           #D4BB40; /* design: divider lines */
+  --text:           #515151; /* design: normal text */
+  --error:          #CC0000; /* design: password error text */
+  --navy:           #1E1B5F; /* design: Archived Documents card */
+  --brown:          #5F431B; /* design: Archived Files This Month card */
+  --badge-grey:     #6B6B6B; /* design: submitted badge */
+  --muted:          #828282; /* design: dates, times, helper text */
+  --danger-panel:   #F44336; /* design: delete modal */
+  --danger-btn:     #AF2936; /* design: delete button in tables */
+  --completed-bg:   #D7DEAE; /* design: Completed badge */
+  --nav-bg:         #C7E4D2; /* design: nav bar */
+  --nav-text:       #2E7D5D; /* design: nav link text */
+  --white:          #FFFFFF;
+
+  --page-bg:        #F5F5F5;
+  --nav-active:     #4C9C6D;
+  --btn-primary:    #2E7D5D;
+  --btn-muted:      #6B6B6B;
+  --submitted-bg:   #A8DDB5;
+  --border:         #BDBDBD;
+  --shadow:         0 4px 14px rgba(0, 0, 0, .12);
+
+  --font-display: "Outfit", "Gilroy", "Segoe UI", system-ui, sans-serif;
+  --font-body:    "Calibri", "Carlito", "Segoe UI", system-ui, sans-serif;
+
+  --radius-card: 2.5rem;
+  --radius-pill: 999px;
+  --radius-btn:  .5rem;
+  --radius-field: .25rem;
+}
