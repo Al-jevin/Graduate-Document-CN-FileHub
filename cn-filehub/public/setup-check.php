@@ -60,6 +60,11 @@ if (Env::has('SUPABASE_URL') && Env::has('SUPABASE_ANON_KEY') && Env::has('SUPAB
         $add('fail', 'Database schema not found', 'Run database/schema.sql in the Supabase SQL Editor.');
     }
 
+    $view = Supabase::rest('GET', 'submission_list', ['query' => ['select' => 'id', 'limit' => '1']]);
+    $view['status'] === 200
+        ? $add('ok', 'Submission list view installed')
+        : $add('fail', 'Submission list view missing', 'Run database/02_submission_list_view.sql in the Supabase SQL Editor.');
+
     $bucket = Supabase::request('GET', '/storage/v1/bucket/' . rawurlencode((string) Env::get('STORAGE_BUCKET', 'student-documents')));
     if ($bucket['status'] === 200) {
         ($bucket['data']['public'] ?? true) === false

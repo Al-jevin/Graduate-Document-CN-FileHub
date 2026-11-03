@@ -49,6 +49,7 @@ final class Supabase
             $headers[] = 'Content-Type: application/json';
         }
 
+        $respHeaders = [];
         $ch = curl_init($url);
         curl_setopt_array($ch, [
             CURLOPT_CUSTOMREQUEST  => strtoupper($method),
@@ -59,6 +60,13 @@ final class Supabase
             CURLOPT_SSL_VERIFYPEER => true,
             CURLOPT_SSL_VERIFYHOST => 2,
         ]);
+        curl_setopt($ch, CURLOPT_HEADERFUNCTION, function ($c, string $line) use (&$respHeaders): int {
+            $parts = explode(':', $line, 2);
+            if (count($parts) === 2) {
+                $respHeaders[strtolower(trim($parts[0]))] = trim($parts[1]);
+            }
+            return strlen($line);
+        });
         if ($payload !== null) {
             curl_setopt($ch, CURLOPT_POSTFIELDS, $payload);
         }
@@ -82,7 +90,11 @@ final class Supabase
                 ? (string) ($data['message'] ?? $data['msg'] ?? $data['error_description'] ?? $data['error'] ?? 'Request failed')
                 : 'Request failed';
         }
-        return ['status' => $status, 'data' => $data, 'error' => $error];
+        $total = null;
+        if (isset($respHeaders['content-range']) && preg_match('#/(\d+)$#', $respHeaders['content-range'], $m)) {
+            $total = (int) $m[1];
+        }
+        return ['status' => $status, 'data' => $data, 'error' => $error, 'total' => $total];
     }
 
     /** PostgREST table call, e.g. Supabase::rest('GET', 'students', ['query' => ['select' => '*']]) */

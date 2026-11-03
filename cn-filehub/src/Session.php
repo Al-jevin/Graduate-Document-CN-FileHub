@@ -63,6 +63,15 @@ final class Session
         return $_SESSION['user'];
     }
 
+    /** For API endpoints: answer 401 JSON instead of redirecting. */
+    public static function requireLoginJson(): array
+    {
+        if (!self::check()) {
+            json_response(['error' => 'Your session expired. Please log in again.'], 401);
+        }
+        return $_SESSION['user'];
+    }
+
     public static function flash(string $key, string $message): void
     {
         $_SESSION['flash'][$key] = $message;

@@ -1,0 +1,40 @@
+/* Auth pages, registration card, greeting card */
+.auth { width: min(25rem, 100%); margin: 4.5rem auto 0; }
+.auth h1 { text-align: center; font-size: 3rem; margin-bottom: 2.4rem; }
+.auth .field-pill { height: 3.75rem; }
+.auth .btn { width: 100%; padding: 1.05rem; font-size: 1.6rem; display: block; }
+.auth .btn-outline { padding: 1rem; font-size: 1.3rem; }
+.auth .rule { width: calc(100% + .6rem); margin: 1.6rem -.3rem; border-top-width: 2px; }
+.auth-help { text-align: center; color: var(--muted); font: 600 1.25rem var(--font-display); margin: 1rem 0 1.2rem; }
+.auth-help a { color: #3D5A99; }
+.auth-sub { text-align: center; color: var(--muted); font: 600 1.25rem var(--font-display); margin: 0 0 1.4rem; }
+
+.pw-wrap { position: relative; }
+.pw-wrap .field { padding-right: 3.6rem; }
+.pw-toggle { position: absolute; right: 1.1rem; top: 50%; transform: translateY(-50%); width: 2.2rem; height: 2.2rem; padding: 0; background: none; border: 0; cursor: pointer; color: #000; }
+.pw-toggle svg { width: 100%; height: 100%; fill: currentColor; }
+.pw-toggle svg[hidden] { display: none; }
+
+
+/* Registration card */
+.reg-card { width: min(56rem, 100%); margin: 2.2rem auto 0; background: var(--white); border-radius: 2rem; box-shadow: var(--shadow); padding: 2.6rem 3.2rem 3rem; }
+.reg-card h1 { text-align: center; font-size: 2.8rem; margin-bottom: 1.4rem; }
+.reg-card h2 { font-size: 1.9rem; margin-bottom: .4rem; }
+.reg-card .intro { font-size: .8rem; color: var(--muted); margin: 0 0 1.2rem; }
+.reg-card label { font-family: var(--font-body); font-weight: 700; color: #4a4a4a; font-size: 1.05rem; }
+.reg-card .field { font-size: 1rem; padding: .85rem 1rem; }
+.reg-card .field-error { font: 700 .9rem var(--font-display); }
+.reg-card .btn { width: 100%; font-size: 1.15rem; padding: .85rem; }
+.terms { font-size: 1rem; }
+.terms ol { padding-left: 1.6rem; }
+.terms li { margin-bottom: .8rem; }
+.terms-check { display: flex; gap: .7rem; align-items: center; font: 600 1.1rem var(--font-display); color: var(--green); margin: 1rem 0; }
+.terms-check input { width: 1.3rem; height: 1.3rem; }
+.terms-check label { margin: 0; font: inherit; color: inherit; cursor: pointer; }
+
+/* Registration: close + back */
+.reg-card { position: relative; }
+.reg-close { position: absolute; top: 1.4rem; right: 1.6rem; width: 2.8rem; height: 2.8rem; border-radius: 50%; display: flex; align-items: center; justify-content: center; color: var(--green); }
+.reg-close:hover { background: var(--nav-bg); }
+.reg-close svg { width: 1.3rem; height: 1.3rem; }
+.reg-back { margin-top: .9rem; }

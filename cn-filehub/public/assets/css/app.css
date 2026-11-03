@@ -1,0 +1,82 @@
+/* Main app pages: lists, review, records, modal, toasts */
+.page > h1 { margin-top: 1.6rem; }
+.card h2 { margin-bottom: 1.2rem; }
+.rule-title { margin: 1.8rem 0 2.4rem; }
+.muted { color: var(--muted); font: 600 1.15rem var(--font-display); margin: 1rem 0 0; }
+
+/* Search + table cards */
+.search-card { margin-top: 2.4rem; border-radius: 3rem; padding: 2.4rem 3rem 2.2rem; }
+.field-search { height: 3.9rem; font-size: 1.3rem; }
+.table-card { margin-top: 2.4rem; border-radius: 3rem; padding: 2rem 1.8rem; }
+.table .actions { white-space: nowrap; }
+.table .actions .btn { margin-right: .35rem; }
+.empty { text-align: center; color: var(--muted); font: 600 1.2rem var(--font-display); padding: 1.6rem 0 .6rem; margin: 0; }
+.pager { display: flex; justify-content: center; align-items: center; gap: 1.2rem; padding-top: 1rem; font: 600 1.05rem var(--font-display); color: var(--green); }
+select.field { appearance: none; background: var(--white) url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='22' height='12' viewBox='0 0 22 12'%3E%3Cpath d='M1 1l10 9.5L21 1' fill='none' stroke='%23515151' stroke-width='1.6'/%3E%3C/svg%3E") no-repeat right 1rem center; padding-right: 3rem; }
+
+/* Delete modal */
+.modal-overlay { position: fixed; inset: 0; background: rgba(0, 0, 0, .35); display: flex; align-items: center; justify-content: center; z-index: 50; }
+.modal-overlay[hidden] { display: none; }
+.modal { width: min(43rem, calc(100% - 3rem)); background: var(--white); border-radius: 1.8rem; box-shadow: 0 10px 40px rgba(0, 0, 0, .3); padding: 2.4rem 3rem 2.6rem; text-align: center; }
+.modal-icon { width: 6.2rem; height: 6.2rem; border-radius: 50%; background: var(--danger-panel); margin: 0 auto 1.4rem; display: flex; align-items: center; justify-content: center; }
+.modal h2 { font-size: 2.6rem; margin-bottom: .8rem; }
+.modal-tracking { font: 500 1.25rem var(--font-display); color: #333; margin: 0 0 1.8rem; word-break: break-all; }
+.modal-actions { display: flex; gap: 1.6rem; }
+.btn-modal { flex: 1; border: 0; border-radius: .6rem; padding: 1.1rem; font: 600 1.9rem var(--font-display); cursor: pointer; }
+.btn-modal-cancel { background: #D0D0D0; color: #000; }
+.btn-modal-delete { background: var(--danger-panel); color: var(--white); }
+.btn-modal:disabled { opacity: .6; cursor: wait; }
+
+/* Review page */
+.review-grid { display: grid; grid-template-columns: 2.1fr 1fr; gap: 2.4rem; margin-bottom: 2rem; align-items: stretch; }
+.review-grid .card { border-radius: 3rem; }
+.info { margin: 0; }
+.info > div { display: grid; grid-template-columns: 12rem 1fr; gap: .2rem; padding: .22rem 0; font-size: 1.15rem; }
+.info dt { font: 700 1.15rem var(--font-body); color: #4a4a4a; }
+.info dd { margin: 0; }
+.file-label { font: 700 1.15rem var(--font-body); color: #4a4a4a; margin: 0; }
+.file-name { margin: .1rem 0 1.2rem; font-size: 1.15rem; word-break: break-all; }
+.btn-block { display: block; width: 100%; font-size: 1.7rem; padding: 1rem; border-radius: .5rem; }
+.status-grid { display: grid; grid-template-columns: 1fr 3.2fr; gap: 1.2rem; }
+.status-grid label, .app-form label, .form-card label { font: 700 1.2rem var(--font-body); color: #4a4a4a; }
+.btn-row { display: flex; gap: 1.4rem; margin: 1.8rem 0 0; }
+.btn-lg { font-size: 1.7rem; padding: 1.1rem 3rem; border-radius: .5rem; }
+.history-card { margin-top: 2.4rem; border-radius: 3rem; }
+
+/* Records + Add Student forms */
+.notice-card { margin: 2.4rem 0; border-radius: 3rem; padding: 2.4rem 3rem; }
+.notice-text { font: 600 1.55rem var(--font-display); color: var(--muted); margin: 0 0 1.6rem; max-width: 85%; }
+.app-form { margin-top: 1.4rem; }
+.app-form .field { font-size: 1.15rem; padding: .85rem 1rem; }
+.app-form label { font-size: 1.7rem; display: block; margin-bottom: .5rem; }
+.app-form .grid-2 label, .app-form .grid-3b label, .app-form .grid-former label, #student-form .form-row > .label-row label { font-size: 1.2rem; }
+.grid-3 { display: grid; grid-template-columns: 1.5fr 1fr 1fr; gap: 1.4rem; }
+.grid-3b { display: grid; grid-template-columns: 1.6fr 1fr 1fr; gap: 0 1.4rem; }
+.grid-former { display: grid; grid-template-columns: 1fr 3fr; gap: 0 1.4rem; align-items: start; }
+.form-block { margin-top: 1.6rem; }
+.hint { color: var(--muted); font: 600 1.05rem var(--font-display); margin: .4rem 0 0; }
+.field-file { padding: .5rem; }
+.check-inline { display: flex !important; align-items: center; gap: .6rem; height: 3.75rem; margin: 0 !important; padding-left: .5rem; font: 500 1.15rem var(--font-body) !important; }
+.check-inline input { width: 1.5rem; height: 1.5rem; }
+.app-form > .btn, .app-form > .btn-row { margin-top: 1.8rem; }
+.field[readonly] { background: #FAFAFA; }
+.field:disabled { background: #EFEFEF; cursor: not-allowed; }
+#student-form { max-width: 100%; }
+
+/* Upload progress */
+.progress { margin-top: 1rem; display: flex; align-items: center; gap: 1rem; font: 600 1rem var(--font-display); color: var(--green); }
+.progress-track { flex: 1; height: .7rem; background: #DDD; border-radius: 99px; overflow: hidden; }
+.progress-bar { height: 100%; width: 0; background: var(--btn-primary); transition: width .15s; }
+
+/* Toasts */
+.toasts { position: fixed; right: 1.6rem; bottom: 1.6rem; display: flex; flex-direction: column; gap: .6rem; z-index: 60; max-width: min(28rem, calc(100% - 3rem)); }
+.toast { padding: .9rem 1.2rem; border-radius: .6rem; color: var(--white); font: 600 1.05rem var(--font-display); box-shadow: 0 4px 14px rgba(0,0,0,.25); }
+.toast-success { background: var(--btn-primary); }
+.toast-error { background: var(--danger-btn); }
+
+/* Form fields match the design's 60px height; consistent label spacing */
+.app-form input.field:not([type="file"]), .app-form select.field { height: 3.75rem; }
+.app-form .label-row { margin-bottom: .4rem; }
+.app-form .label-row label { margin: 0; }
+.app-form .form-row { margin-bottom: 1.8rem; }
+.app-form .grid-3b .form-row, .app-form .grid-former .form-row { margin-bottom: 1.8rem; }

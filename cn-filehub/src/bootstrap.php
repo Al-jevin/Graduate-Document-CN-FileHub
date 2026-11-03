@@ -19,6 +19,11 @@ require_once __DIR__ . '/helpers.php';
 require_once __DIR__ . '/Supabase.php';
 require_once __DIR__ . '/Session.php';
 require_once __DIR__ . '/Csrf.php';
+require_once __DIR__ . '/Auth.php';
+require_once __DIR__ . '/Storage.php';
+require_once __DIR__ . '/Submissions.php';
+require_once __DIR__ . '/Students.php';
+require_once __DIR__ . '/Dashboard.php';
 
 // Baseline security headers for every page.
 header('X-Frame-Options: DENY');

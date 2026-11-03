@@ -48,6 +48,14 @@ label { display: block; font: 600 1.15rem var(--font-display); color: var(--gree
 .field-error { color: var(--error); font: 600 .9rem var(--font-display); text-align: right; margin: .3rem .8rem 0; min-height: 1.1em; }
 .rule { border: 0; border-top: 3px solid var(--gold); margin: 1.6rem 0; }
 
+/* Form layout (shared) */
+.form-row { margin-bottom: 1.4rem; }
+.label-row { display: flex; justify-content: space-between; align-items: baseline; gap: 1rem; }
+.grid-2 { display: grid; grid-template-columns: 1fr 1fr; gap: 0 1.4rem; }
+.alert { border-radius: var(--radius-btn); padding: .8rem 1.1rem; margin: 1.2rem 0; font: 600 1.05rem var(--font-display); }
+.alert-error { background: #FBE7E7; color: var(--error); }
+.alert-ok { background: var(--nav-bg); color: var(--nav-text); }
+
 /* Badges */
 .badge { display: inline-block; padding: .2rem 1rem; border-radius: var(--radius-pill); font: 500 .9rem var(--font-display); }
 .badge-submitted { background: var(--submitted-bg); color: var(--green); }
