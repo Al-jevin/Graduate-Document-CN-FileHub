@@ -20,7 +20,8 @@ A document submission and tracking system for the College of Nursing Graduate Pr
 cn-filehub/
 ├── database/
 │   ├── schema.sql                  # Tables, RLS policies, functions, storage bucket (run first)
-│   └── 02_submission_list_view.sql # Read-only view used by the tables (run second)
+│   ├── 02_submission_list_view.sql # Read-only view used by the tables (run second)
+│   └── 03_upload_changes.sql       # New document types, residency/semester, exam fields (run third)
 ├── includes/                       # Shared layout and UI components
 ├── public/                         # Web root: only this folder should be served
 │   ├── api/                        # JSON endpoints used by the JS
@@ -60,10 +61,11 @@ Or unzip the zip you were given.
 
 ### 3. Install the database
 
-In **Supabase > SQL Editor > New query**, run these two files **in order**, one at a time:
+In **Supabase > SQL Editor > New query**, run these three files **in order**, one at a time:
 
 1. `database/schema.sql`
 2. `database/02_submission_list_view.sql`
+3. `database/03_upload_changes.sql`
 
 `schema.sql` also creates the private `student-documents` storage bucket (PDF only, 10 MB).
 
@@ -131,6 +133,7 @@ Open `/register.php`, create an account, then log in.
 | "Service-role key rejected" | Re-copy the Secret key into `.env`, with no quotes or spaces |
 | "Database schema not found" | Run `schema.sql` in the Supabase SQL Editor |
 | Submissions table errors or is empty | Run `02_submission_list_view.sql` |
+| Upload fails with "Could not save the submission" | Run `03_upload_changes.sql` |
 | New admin cannot log in right away | Turn off "Confirm email" in Supabase Auth settings |
 | Blank page or missing extension error | Enable `curl`, `fileinfo`, `openssl`, `mbstring` in `php.ini` |
 | Upload fails | Check the file is a PDF under `MAX_UPLOAD_MB`, and that `php.ini` `upload_max_filesize` and `post_max_size` are large enough |
