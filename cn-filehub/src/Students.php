@@ -4,6 +4,11 @@ declare(strict_types=1);
 /** Student records and the lists the Records pages need. */
 final class Students
 {
+    public const EXAM_TYPE = 'Comprehensive Examination';
+    public const RESIDENCY_YEARS = [1 => '1st Year', 2 => '2nd Year', 3 => '3rd Year', 4 => '4th Year', 5 => '5th Year'];
+    public const SEMESTERS = ['1st Semester', '2nd Semester', 'Summer'];
+    public const EXAM_TAKES = [1 => '1st take', 2 => '2nd take', 3 => '3rd take', 4 => '4th take', 5 => '5th take'];
+
     /** Academic years, newest first, starting with the current one (school year begins in August). */
     public static function academicYears(int $count = 30): array
     {

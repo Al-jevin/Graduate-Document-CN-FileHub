@@ -12,8 +12,27 @@ $fail = fn (string $m, int $code = 422) => json_response(['error' => $m], $code)
 $studentId = (string) ($_POST['student_id'] ?? '');
 if (!is_uuid($studentId) || Students::find($studentId) === null) $fail('Select a student from the list.');
 $typeId = (int) ($_POST['document_type_id'] ?? 0);
-$typeIds = array_map(fn ($t) => (int) $t['id'], Students::documentTypes());
-if (!in_array($typeId, $typeIds, true)) $fail('Select a document type from the list.');
+$typeNames = array_column(Students::documentTypes(), 'name', 'id');
+if (!isset($typeNames[$typeId])) $fail('Select a document type from the list.');
+$isExam = $typeNames[$typeId] === Students::EXAM_TYPE;
+
+// --- Residency, semester, and (for the Comprehensive Examination) exam date and takes
+$residency = (int) ($_POST['year_of_residency'] ?? 0);
+if (!isset(Students::RESIDENCY_YEARS[$residency])) $fail('Choose the year of residency.');
+$semester = (string) ($_POST['semester'] ?? '');
+if (!in_array($semester, Students::SEMESTERS, true)) $fail('Choose the semester.');
+
+$examDate = null; $examTakes = null;
+if ($isExam) {
+    $raw = (string) ($_POST['exam_date'] ?? '');
+    $dt = DateTimeImmutable::createFromFormat('!Y-m-d', $raw, new DateTimeZone('Asia/Manila'));
+    $ok = $dt && $dt->format('Y-m-d') === $raw && (int) $dt->format('Y') >= 1950;
+    if (!$ok) $fail('Enter a valid examination date (MM | DD | YYYY).');
+    if ($dt > new DateTimeImmutable('today', new DateTimeZone('Asia/Manila'))) $fail('The examination date cannot be in the future.');
+    $examDate = $raw;
+    $examTakes = (int) ($_POST['exam_takes'] ?? 0);
+    if (!isset(Students::EXAM_TAKES[$examTakes])) $fail('Choose the number of takes.');
+}
 
 // --- File checks (never trust the browser: extension, MIME type and file signature)
 $maxBytes = min(Env::int('MAX_UPLOAD_MB', 10), 10) * 1024 * 1024;
@@ -41,6 +60,8 @@ $rec = Supabase::rpc('create_submission', [
     'p_id' => $submissionId, 'p_student_id' => $studentId, 'p_document_type_id' => $typeId,
     'p_created_by' => $user['id'], 'p_storage_path' => $path, 'p_original_filename' => $name,
     'p_file_size' => strlen($bytes), 'p_sha256' => hash('sha256', $bytes),
+    'p_year_of_residency' => $residency, 'p_semester' => $semester,
+    'p_exam_date' => $examDate, 'p_exam_takes' => $examTakes,
 ]);
 if ($rec['status'] < 200 || $rec['status'] >= 300) {
     Storage::delete($path);

@@ -80,3 +80,19 @@ select.field { appearance: none; background: var(--white) url("data:image/svg+xm
 .app-form .label-row label { margin: 0; }
 .app-form .form-row { margin-bottom: 1.8rem; }
 .app-form .grid-3b .form-row, .app-form .grid-former .form-row { margin-bottom: 1.8rem; }
+
+/* Comprehensive Examination group (greyed out until that document type is chosen) */
+.exam-group { border: 0; margin: 0; padding: 0; min-width: 0; transition: opacity .15s; }
+.exam-group legend { font: 700 1.7rem var(--font-body); color: #4a4a4a; padding: 0; margin-bottom: .5rem; float: left; width: 100%; }
+.exam-group .exam-row { clear: both; display: grid; grid-template-columns: minmax(0, 1fr) minmax(0, 1.5fr); gap: 1.4rem; }
+.exam-group:disabled { opacity: .45; }
+.exam-group:disabled .seg, .exam-group:disabled .field { background: #EFEFEF; cursor: not-allowed; }
+.exam-group.is-active .date-seg, .exam-group.is-active select.field { border-color: var(--btn-primary); box-shadow: 0 0 0 2px rgba(45, 125, 91, .18); }
+.date-seg { display: flex; align-items: center; gap: .2rem; height: 3.75rem; padding: 0 .8rem; background: var(--white); border: 1px solid #B9B9B9; border-radius: .6rem; }
+.date-seg:focus-within { border-color: var(--btn-primary); box-shadow: 0 0 0 3px rgba(45, 125, 91, .3); }
+.date-seg .seg { border: 0; outline: 0; background: transparent; text-align: center; font: 500 1.15rem var(--font-body); width: 3.2rem; padding: .3rem 0; color: inherit; }
+.date-seg .seg-year { width: 4.8rem; }
+.date-seg .seg::placeholder { color: #8a8a8a; }
+.date-seg .seg-sep { color: #8a8a8a; font-size: 1.3rem; user-select: none; }
+.date-seg .seg-bad { color: var(--danger-btn); }
+@media (max-width: 900px) { .exam-group .exam-row { grid-template-columns: 1fr; } }

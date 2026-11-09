@@ -9,6 +9,9 @@ $students = Students::all();
 $types    = Students::documentTypes();
 $pre      = (string) ($_GET['student'] ?? '');
 $maxMb    = min(Env::int('MAX_UPLOAD_MB', 10), 10);
+$residency = Students::RESIDENCY_YEARS;
+$semesters = Students::SEMESTERS;
+$takes     = Students::EXAM_TAKES;
 
 layout_header(['title' => 'Records', 'nav' => 'records', 'css' => ['app.css']]);
 ?>
@@ -22,7 +25,8 @@ layout_header(['title' => 'Records', 'nav' => 'records', 'css' => ['app.css']]);
 </section>
 
 <form id="upload-form" class="app-form" novalidate data-max-mb="<?= e((string) $maxMb) ?>"
-      data-preselect="<?= is_uuid($pre) ? e($pre) : '' ?>">
+      data-preselect="<?= is_uuid($pre) ? e($pre) : '' ?>"
+      data-exam-type="<?= e(Students::EXAM_TYPE) ?>">
   <div class="grid-3">
     <div>
       <label for="student">Select Student Name</label>
@@ -41,7 +45,7 @@ layout_header(['title' => 'Records', 'nav' => 'records', 'css' => ['app.css']]);
       <input id="student-number" class="field" readonly tabindex="-1">
     </div>
     <div>
-      <label for="student-level">Graduate Year Level</label>
+      <label for="student-level">Entry Year</label>
       <input id="student-level" class="field" readonly tabindex="-1">
     </div>
   </div>
@@ -51,9 +55,48 @@ layout_header(['title' => 'Records', 'nav' => 'records', 'css' => ['app.css']]);
     <select id="doc-type" name="document_type_id" class="field">
       <option value="">Choose Document</option>
       <?php foreach ($types as $t): ?>
-        <option value="<?= e((string) $t['id']) ?>"><?= e($t['name']) ?></option>
+        <option value="<?= e((string) $t['id']) ?>" data-name="<?= e($t['name']) ?>"><?= e($t['name']) ?></option>
       <?php endforeach; ?>
     </select>
+  </div>
+
+  <div class="grid-3 form-block">
+    <fieldset id="comp-exam" class="exam-group" disabled>
+      <legend>Comprehensive Examination</legend>
+      <div class="exam-row">
+        <div class="date-seg" role="group" aria-label="Date of comprehensive examination (month, day, year)">
+          <input id="exam-mm" class="seg" inputmode="numeric" maxlength="2" placeholder="MM" autocomplete="off" aria-label="Month">
+          <span class="seg-sep" aria-hidden="true">|</span>
+          <input id="exam-dd" class="seg" inputmode="numeric" maxlength="2" placeholder="DD" autocomplete="off" aria-label="Day">
+          <span class="seg-sep" aria-hidden="true">|</span>
+          <input id="exam-yyyy" class="seg seg-year" inputmode="numeric" maxlength="4" placeholder="YYYY" autocomplete="off" aria-label="Year">
+        </div>
+        <select id="exam-takes" class="field" aria-label="Number of takes">
+          <option value="">Choose number of takes</option>
+          <?php foreach ($takes as $n => $label): ?>
+            <option value="<?= $n ?>"><?= e($label) ?></option>
+          <?php endforeach; ?>
+        </select>
+      </div>
+    </fieldset>
+    <div>
+      <label for="residency">Year of Residency</label>
+      <select id="residency" name="year_of_residency" class="field">
+        <option value="">Choose year of residency</option>
+        <?php foreach ($residency as $n => $label): ?>
+          <option value="<?= $n ?>"><?= e($label) ?></option>
+        <?php endforeach; ?>
+      </select>
+    </div>
+    <div>
+      <label for="semester">Semester</label>
+      <select id="semester" name="semester" class="field">
+        <option value="">Choose semester</option>
+        <?php foreach ($semesters as $sem): ?>
+          <option value="<?= e($sem) ?>"><?= e($sem) ?></option>
+        <?php endforeach; ?>
+      </select>
+    </div>
   </div>
 
   <div class="form-block">

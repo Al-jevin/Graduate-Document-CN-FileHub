@@ -55,6 +55,12 @@ layout_header(['title' => 'Review Submission', 'nav' => $from === 'tasks' ? 'tas
       <div><dt>Document</dt><dd>: <?= e($sub['document_name']) ?></dd></div>
       <div><dt>Tracking ID</dt><dd>: <?= e($sub['tracking_id']) ?></dd></div>
       <div><dt>Current Status</dt><dd>: <?= e($sub['status']) ?></dd></div>
+      <?php if (!empty($sub['year_of_residency'])): ?><div><dt>Year of Residency</dt><dd>: <?= e(Students::RESIDENCY_YEARS[(int) $sub['year_of_residency']] ?? '') ?></dd></div><?php endif; ?>
+      <?php if (!empty($sub['semester'])): ?><div><dt>Semester</dt><dd>: <?= e($sub['semester']) ?></dd></div><?php endif; ?>
+      <?php if (!empty($sub['comprehensive_exam_date'])): ?>
+        <div><dt>Exam Date</dt><dd>: <?= e(date('m | d | Y', strtotime($sub['comprehensive_exam_date']))) ?></dd></div>
+        <div><dt>Number of Takes</dt><dd>: <?= e(Students::EXAM_TAKES[(int) $sub['comprehensive_exam_takes']] ?? '') ?></dd></div>
+      <?php endif; ?>
     </dl>
   </section>
   <section class="card">

@@ -124,7 +124,7 @@ create index if not exists idx_history_submission         on public.submission_s
 create index if not exists idx_activity_created           on public.activity_logs (created_at desc);
 create index if not exists idx_attempts_lookup            on public.auth_attempts (identifier, kind, created_at desc);
 
--- ---------- Seed: the seven approved document types -------------------
+-- ---------- Seed: document types (see 03_upload_changes.sql for the full, current list) ----
 
 insert into public.document_types (name, sort_order) values
   ('Birth Certificate', 1),
